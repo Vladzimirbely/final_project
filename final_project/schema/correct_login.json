@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "recaptcha": {
+      "type": "object",
+      "properties": {
+        "isBot": {
+          "type": "boolean"
+        },
+        "siteKey": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "isBot",
+        "siteKey"
+      ]
+    },
+    "hhcaptcha": {
+      "type": "object",
+      "properties": {
+        "isBot": {
+          "type": "boolean"
+        },
+        "captchaError": {
+          "type": "null"
+        },
+        "captchaKey": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "isBot",
+        "captchaError",
+        "captchaKey"
+      ]
+    },
+    "redirectUrl": {
+      "type": "string"
+    },
+    "show2FAPopup": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "recaptcha",
+    "hhcaptcha",
+    "redirectUrl",
+    "show2FAPopup"
+  ]
+}

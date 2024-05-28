@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "recaptcha": {
+      "type": "object",
+      "properties": {
+        "isBot": {
+          "type": "boolean"
+        },
+        "siteKey": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "isBot",
+        "siteKey"
+      ]
+    },
+    "hhcaptcha": {
+      "type": "object",
+      "properties": {
+        "isBot": {
+          "type": "boolean"
+        },
+        "captchaState": {
+          "type": "string"
+        },
+        "captchaError": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "isBot",
+        "captchaState",
+        "captchaError"
+      ]
+    }
+  },
+  "required": [
+    "recaptcha",
+    "hhcaptcha"
+  ]
+}
