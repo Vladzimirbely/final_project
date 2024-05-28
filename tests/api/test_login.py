@@ -23,8 +23,7 @@ def test_login_with_correct_data():
     url = 'account'
     data = 'login?backurl=%2F'
 
-    payload = {'username': login,
-               'password': password}
+    payload = {'username': login, 'password': password}
 
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
