@@ -60,9 +60,9 @@ def test_login_with_incorrect_data():
                       'Chrome/124.0.0.0 Safari/537.36'}
     with allure.step('Send request with incorrect data'):
         response = requests.post(f'{page}{url}/{data}', headers=headers, data=payload)
-    cookies = response.cookies.get('hhtoken')
+    json = response.text
     with allure.step('Attach files'):
-        attach(body=cookies, name='cookies', attachment_type=AttachmentType.TEXT)
+        attach(body=json, name='json', attachment_type=AttachmentType.TEXT)
     with allure.step('Checking status code'):
         assert response.status_code == 200
     with allure.step('Checking validation'):

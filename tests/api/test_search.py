@@ -7,13 +7,13 @@ from final_project.utils.load_json import load_json
 
 page = 'https://rabota.by/'
 
-@allure.epic('Login')
-@allure.story('Login user with correct data')
-@allure.feature('Login')
+@allure.epic('Search')
+@allure.story('Search vacancies')
+@allure.feature('Search')
 @allure.tag('API')
 @allure.label('owner')
 @allure.severity('normal')
-def test_login_with_correct_data():
+def test_search_vacancy():
     url = 'vacancysuggest'
     data = '?q=PYTHON'
 
@@ -31,6 +31,12 @@ def test_login_with_correct_data():
     with allure.step('Checking validation'):
         validate(response.json(), load_json('search_vacancies.json'))
 
+@allure.epic('Search')
+@allure.story('Add vacancy to favorite')
+@allure.feature('Search')
+@allure.tag('API')
+@allure.label('owner')
+@allure.severity('normal')
 def test_add_vacancy_to_favorite_without_registered():
     url = 'applicant'
     data = 'favorite_vacancies/add'
@@ -40,10 +46,42 @@ def test_add_vacancy_to_favorite_without_registered():
 
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                      'Chrome/124.0.0.0 Safari/537.36',
+                      'Chrome/124.0.0.0 Safari/537.36'
     }
 
     with allure.step('Send request'):
         response = requests.get(f'{page}{url}/{data}', headers=headers, data=payload)
     with allure.step('Checking status code'):
         assert response.status_code == 404
+
+@allure.epic('Otp')
+@allure.story('Get Otp')
+@allure.feature('Otp')
+@allure.tag('API')
+@allure.label('owner')
+@allure.severity('normal')
+def test_enter_phone_number_for_get_otp():
+    url = 'account'
+    data = 'otp_generate'
+    num = '3752555555555'
+
+    payload = {'login': num}
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/124.0.0.0 Safari/537.36'
+    }
+
+    with allure.step('Send request'):
+        response = requests.post(f'{page}{url}/{data}', headers=headers, data=payload)
+    json = response.text
+    with allure.step('Attach files'):
+        attach(body=json, name='json', attachment_type=AttachmentType.TEXT)
+    with allure.step('Checking status code'):
+        assert response.status_code == 200
+    with allure.step('Checking response'):
+        assert response.json()['recaptcha']['isBot'] == False
+        assert response.json()['recaptcha']['siteKey'] is not None
+        assert response.json()['otp']['login'] == num
+    with allure.step('Checking validation'):
+        validate(response.json(), load_json('otp.json'))

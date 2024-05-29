@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "recaptcha": {
+      "type": "object",
+      "properties": {
+        "isBot": {
+          "type": "boolean"
+        },
+        "siteKey": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "isBot",
+        "siteKey"
+      ]
+    },
+    "hhcaptcha": {
+      "type": "object",
+      "properties": {
+        "isBot": {
+          "type": "boolean"
+        },
+        "captchaError": {
+          "type": "null"
+        },
+        "captchaKey": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "isBot",
+        "captchaError",
+        "captchaKey"
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "key": {
+      "type": "string"
+    },
+    "notificationType": {
+      "type": "null"
+    },
+    "codeLength": {
+      "type": "null"
+    },
+    "expectedOperationType": {
+      "type": "null"
+    },
+    "nextSendTime": {
+      "type": "null"
+    },
+    "nextConfirmTime": {
+      "type": "null"
+    },
+    "expirationTime": {
+      "type": "null"
+    },
+    "accountType": {
+      "type": "null"
+    },
+    "otp": {
+      "type": "object",
+      "properties": {
+        "login": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "null"
+        },
+        "lastName": {
+          "type": "null"
+        },
+        "secondsUntilNextSend": {
+          "type": "integer"
+        },
+        "authType": {
+          "type": "null"
+        },
+        "backurl": {
+          "type": "string"
+        },
+        "formattedPhone": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "login",
+        "firstName",
+        "lastName",
+        "secondsUntilNextSend",
+        "authType",
+        "backurl",
+        "formattedPhone"
+      ]
+    }
+  },
+  "required": [
+    "recaptcha",
+    "hhcaptcha",
+    "success",
+    "key",
+    "notificationType",
+    "codeLength",
+    "expectedOperationType",
+    "nextSendTime",
+    "nextConfirmTime",
+    "expirationTime",
+    "accountType",
+    "otp"
+  ]
+}
