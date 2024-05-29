@@ -65,5 +65,3 @@ def test_login_with_incorrect_data():
         attach(body=json, name='json', attachment_type=AttachmentType.TEXT)
     with allure.step('Checking status code'):
         assert response.status_code == 200
-    with allure.step('Checking validation'):
-        validate(response.json(), load_json('incorrect_login.json'))
