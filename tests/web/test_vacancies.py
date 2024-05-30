@@ -1,6 +1,7 @@
 from final_project.pages.data_company import DataCompany, DataSearchWithFilter
 from final_project.pages.search_page import SearchPage
 import allure
+import pytest
 
 search_page = SearchPage()
 
@@ -10,6 +11,9 @@ search_page = SearchPage()
 @allure.tag('web')
 @allure.label('owner')
 @allure.severity('normal')
+@pytest.mark.web
+@pytest.mark.normal
+@allure.title('Search company')
 def test_search_company():
     data = DataCompany(
         main = 'Yellow - молодая компания, которая занимается разработкой мобильных приложений, облачных систем, а также систем с использованием AI и машинного обучения',
@@ -30,6 +34,9 @@ def test_search_company():
 @allure.tag('web')
 @allure.label('owner')
 @allure.severity('normal')
+@pytest.mark.web
+@pytest.mark.normal
+@allure.title('Advanced search')
 def test_advanced_search():
     data = DataSearchWithFilter(
         python = 'Python'
@@ -45,6 +52,9 @@ def test_advanced_search():
 @allure.tag('web')
 @allure.label('owner')
 @allure.severity('normal')
+@pytest.mark.web
+@pytest.mark.normal
+@allure.title('Open resume page')
 def test_open_resume_page():
     search_page.open()
     search_page.search_resume_page()
@@ -55,6 +65,9 @@ def test_open_resume_page():
 @allure.tag('web')
 @allure.label('owner')
 @allure.severity('normal')
+@pytest.mark.web
+@pytest.mark.normal
+@allure.title('Save search without registering')
 def test_save_search_without_registering():
     search_page.open()
     search_page.save_search_without_registering()
@@ -66,6 +79,9 @@ def test_save_search_without_registering():
 @allure.tag('web')
 @allure.label('owner')
 @allure.severity('normal')
+@pytest.mark.web
+@pytest.mark.normal
+@allure.title('Choose city')
 def test_choose_city():
     search_page.open()
     search_page.change_city()

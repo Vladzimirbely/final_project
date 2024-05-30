@@ -1,3 +1,4 @@
+import pytest
 from final_project.pages.login_page import LoginPage
 import allure
 
@@ -9,6 +10,9 @@ login_page = LoginPage()
 @allure.tag('web')
 @allure.label('owner')
 @allure.severity('high')
+@pytest.mark.web
+@pytest.mark.critical
+@allure.title('Successfully login')
 def test_successfull_login_user():
     login_page.open()
     login_page.login_user_with_correct_data()
@@ -20,6 +24,9 @@ def test_successfull_login_user():
 @allure.tag('web')
 @allure.label('owner')
 @allure.severity('high')
+@pytest.mark.web
+@pytest.mark.critical
+@allure.title('Unsuccessfully login')
 def test_unsuccessfull_login_user():
     login_page.open()
     login_page.login_user_with_incorrect_data()
