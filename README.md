@@ -60,16 +60,27 @@
 ---
 
 <h2 id="run-tests"><img width="40" align="center" src="final_project/models/img/run-tests.png" alt="run"> Run tests</h2>
-
+<p><b>For web tests:</b></p>
 <pre>
-    python -m venv .venv
-    source .venv/bin/activate
-    pip install -r requirements.txt
-    pytest . --browser_version=${BROWSER_VERSION}
+    pytest tests/web
 </pre>
-<p><b>Parameters</b>: 
-    <li>BROWSER_VERSION - browser version in which the tests will be run</li>
-</p>
+<p><b>For API tests:</b></p>
+<pre>
+    pytest tests/api
+</pre>
+<p><b>For mobile tests on emulator:</b></p>
+<pre>
+    pytest tests/api --context=local_emulator
+</pre>
+<p><b>For mobile tests on real device:</b></p>
+<pre>
+    pytest tests/api --context=real_local
+</pre>
+<p><b>For mobile tests on bstack:</b></p>
+<pre>
+    pytest tests/api --context=bstack
+</pre>
+
 
 ---
 
@@ -77,9 +88,12 @@
 <img src="final_project/models/img/build.png" alt="build">
 <p>Сhoose parameters (<i>BROWSER_VERSION, ENVIRONMENT, COMMENT</i>) and click on <b>"Build"</b> button</p>
 <img src="final_project/models/img/parameters.png" alt="parameters">
-<p>After passing the tests report will be generated, you can see it by clicking on the <b>Allure report</b></p>
+<p>After passing the tests report will be generated, you can see it by clicking on the <b>Allure report</b> and <b>Allure TestOps</b></p>
 <img src="final_project/models/img/allure-report.png" alt="allure-report">
 <img src="final_project/models/img/allure-result.png" alt="allure-result">
+<img src="final_project/models/img/testOps.png" alt="allure-testOps">
+<img src="final_project/models/img/testOps-tests.png" alt="allure-testOps-tests">
+
 
 ---
 
