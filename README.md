@@ -89,6 +89,7 @@
 <p>Сhoose parameters (<i>BROWSER_VERSION, ENVIRONMENT, COMMENT</i>) and click on <b>"Build"</b> button</p>
 <img src="final_project/models/img/parameters.png" alt="parameters">
 <p>After passing the tests report will be generated, you can see it by clicking on the <b>Allure report</b> and <b>Allure TestOps</b></p>
+<p><a href="https://allure.autotests.cloud/launch/39345">TestOps</a></p>
 <img src="final_project/models/img/allure-report.png" alt="allure-report">
 <img src="final_project/models/img/allure-result.png" alt="allure-result">
 <img src="final_project/models/img/testOps.png" alt="allure-testOps">
