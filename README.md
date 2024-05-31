@@ -28,7 +28,6 @@
     <img title="Github" width="40" src="resources/github.png">
     <img title="Appium" width="40" src="resources/appium.png">
     <img title="Pydantic" width="40" src="resources/pydantic.png">
-    <img title="Telegram" width="40" src="resources/telegram.png">
 </div>
 <p>Autotests are written in <b>Python</b> using <b>Selenide</b> for <i>UI tests</i>, <b>Browserstack</b>, <b>emulator or real device</b> for <i>mobile tests</i></p>
 <p>Tests are run from <b>Jenkins</b></p>
@@ -107,4 +106,4 @@
 ---
 
 <h2 id="telegram-notification"><img width="40" align="center" src="resources/notification.png" alt="exapmle">Telegram notifications</h2>
-<img src="resources/report-telegram.png" alt="report-telegram">
+<img src="resources/telegram.png" alt="report-telegram">
