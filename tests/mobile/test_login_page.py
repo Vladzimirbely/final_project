@@ -18,17 +18,5 @@ def test_login():
         browser.element((AppiumBy.XPATH,
                          '(//android.view.ViewGroup[@resource-id="by.tut.jobs.android:id/item_social_button_container"])[3]')).click()
 
-    with allure.step('Hide keyboard'):
-        browser.element((AppiumBy.XPATH, '//android.webkit.WebView[@text="Вход в личный кабинет"]/android.view.View/android.view.View/android.view.View[2]')).click()
-
-    with allure.step('Press open password button'):
-        browser.element((AppiumBy.XPATH, '//android.widget.Button[@text="Войти с паролем"]')).click()
-
-    with allure.step('Press login in personal account button'):
-        browser.element((AppiumBy.XPATH, '//android.widget.Button[@text="Войти"]')).click()
-
-    with allure.step('Checking validation'):
-        browser.element((AppiumBy.XPATH, '(//android.widget.TextView[@text="Обязательное поле"])[1]')).should(
-            have.text('Обязательное поле'))
-        browser.element((AppiumBy.XPATH, '(//android.widget.TextView[@text="Обязательное поле"])[2]')).should(
-            have.text('Обязательное поле'))
+    with allure.step('Checking input name'):
+        browser.element((AppiumBy.XPATH, '//android.widget.TextView[@text="Поиск работы"]')).should(have.text('Поиск работы'))

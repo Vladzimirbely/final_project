@@ -3,9 +3,9 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
 
 
-@allure.epic('Support')
-@allure.story('Support')
-@allure.feature('Support')
+@allure.epic('Vacancy page')
+@allure.story('Vacancy')
+@allure.feature('Vacancy page')
 @allure.tag('mobile')
 @allure.label('owner')
 @allure.severity('normal')
