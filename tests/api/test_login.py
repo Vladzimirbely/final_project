@@ -1,7 +1,5 @@
 import os
 import allure
-from allure import attach
-from allure_commons.types import AttachmentType
 from dotenv import load_dotenv
 from jsonschema import validate
 from rabotaby_project_tests.utils.load_json import load_json
@@ -21,14 +19,11 @@ def test_login_with_correct_data(base_api_url):
     password = os.getenv('user_password_api')
     endpoint = '/account/login?backurl=%2F'
 
-    payload = {'username': login, 'password': password}
+    params = {'username': login, 'password': password}
 
     with allure.step('Send request with data'):
-        response = api_request(base_api_url, endpoint, 'POST', params=payload)
+        response = api_request(base_api_url, endpoint, 'POST', params=params)
 
-    cookies = response.cookies.get('_hi')
-    with allure.step('Attach files'):
-        attach(body=cookies, name='cookies', attachment_type=AttachmentType.TEXT)
     with allure.step('Checking status code'):
         assert response.status_code == 200
     with allure.step('Checking response'):
@@ -47,14 +42,11 @@ def test_login_with_correct_data(base_api_url):
 def test_login_with_incorrect_data(base_api_url):
     endpoint = '/account/login?backurl=%2F'
 
-    payload = {'username': 'login',
+    params = {'username': 'login',
                'password': 'password'}
 
     with allure.step('Send request with incorrect data'):
-        response = api_request(base_api_url, endpoint, 'POST', params=payload)
+        response = api_request(base_api_url, endpoint, 'POST', params=params)
 
-    json = response.text
-    with allure.step('Attach files'):
-        attach(body=json, name='json', attachment_type=AttachmentType.TEXT)
     with allure.step('Checking status code'):
         assert response.status_code == 200

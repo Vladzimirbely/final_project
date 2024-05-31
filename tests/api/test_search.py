@@ -1,6 +1,4 @@
 import allure
-from allure import attach
-from allure_commons.types import AttachmentType
 from jsonschema import validate
 from rabotaby_project_tests.utils.load_json import load_json
 from rabotaby_project_tests.utils.api_helper import api_request
@@ -35,11 +33,11 @@ def test_search_vacancy(base_api_url):
 def test_add_vacancy_to_favorite_without_registered(base_api_url):
     endpoint = '/applicant/favorite_vacancies/add'
 
-    payload = {'vacancyId': '100347198',
+    params = {'vacancyId': '100347198',
                'employerId': '5127780'}
 
     with allure.step('Send request'):
-        response = api_request(base_api_url, endpoint, 'GET', params=payload)
+        response = api_request(base_api_url, endpoint, 'GET', params=params)
 
     with allure.step('Checking status code'):
         assert response.status_code == 404
@@ -55,14 +53,11 @@ def test_enter_phone_number_for_get_otp(base_api_url):
     num = '3752555555555'
     endpoint = '/account/otp_generate'
 
-    payload = {'login': num}
+    params = {'login': num}
 
     with allure.step('Send request'):
-        response = api_request(base_api_url, endpoint, 'POST', params=payload)
+        response = api_request(base_api_url, endpoint, 'POST', params=params)
 
-    json = response.text
-    with allure.step('Attach files'):
-        attach(body=json, name='json', attachment_type=AttachmentType.TEXT)
     with allure.step('Checking status code'):
         assert response.status_code == 200
     with allure.step('Checking response'):
