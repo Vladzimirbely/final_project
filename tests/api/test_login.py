@@ -4,10 +4,11 @@ from allure import attach
 from allure_commons.types import AttachmentType
 from dotenv import load_dotenv
 from jsonschema import validate
-from final_project.utils.load_json import load_json
+from rabotaby_project_tests.utils.load_json import load_json
 import requests
 
 page = 'https://rabota.by/'
+
 
 @allure.epic('Login')
 @allure.story('Login user with correct data')
@@ -41,6 +42,7 @@ def test_login_with_correct_data():
         assert response.json()['hhcaptcha']['captchaError'] is None
     with allure.step('Checking validation'):
         validate(response.json(), load_json('correct_login.json'))
+
 
 @allure.epic('Login')
 @allure.story('Login user with incorrect data')

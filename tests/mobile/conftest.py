@@ -2,7 +2,7 @@ import allure
 import pytest
 from selene import browser
 from appium import webdriver
-from final_project.utils import allure_attach
+from rabotaby_project_tests.utils import attach
 from dotenv import load_dotenv
 
 
@@ -39,9 +39,9 @@ def android_mobile_management(context):
 
     yield
 
-    allure_attach.screenshot()
+    attach.screenshot()
 
-    allure_attach.page_source_xml()
+    attach.page_source_xml()
 
     session_id = browser.driver.session_id
 
@@ -49,4 +49,4 @@ def android_mobile_management(context):
         browser.quit()
 
     if context == 'bstack':
-        allure_attach.bstack_video(session_id)
+        attach.bstack_video(session_id)

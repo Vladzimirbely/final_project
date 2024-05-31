@@ -1,8 +1,7 @@
 import pytest
-from final_project.pages.login_page import LoginPage
+from rabotaby_project_tests.pages.login_page import login_page
 import allure
 
-login_page = LoginPage()
 
 @allure.epic('Login')
 @allure.story('Login user with correct data')
@@ -13,10 +12,11 @@ login_page = LoginPage()
 @pytest.mark.web
 @pytest.mark.critical
 @allure.title('Successfully login')
-def test_successfull_login_user():
+def test_successfully_login_user():
     login_page.open()
     login_page.login_user_with_correct_data()
-    login_page.should_successfull_login()
+    login_page.should_successfully_login()
+
 
 @allure.epic('Login')
 @allure.story('Login user with incorrect data')
@@ -27,7 +27,7 @@ def test_successfull_login_user():
 @pytest.mark.web
 @pytest.mark.critical
 @allure.title('Unsuccessfully login')
-def test_unsuccessfull_login_user():
+def test_unsuccessfully_login_user():
     login_page.open()
     login_page.login_user_with_incorrect_data()
-    login_page.should_unsuccessfull_login()
+    login_page.should_unsuccessfully_login()

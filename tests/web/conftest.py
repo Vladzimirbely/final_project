@@ -3,10 +3,11 @@ import pytest
 from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from final_project.utils import attach
+from rabotaby_project_tests.utils import attach
 from dotenv import load_dotenv
 
 DEFAULT_BROWSER_VERSION = "100.0"
+
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -14,9 +15,11 @@ def pytest_addoption(parser):
         default='100.0'
     )
 
+
 @pytest.fixture(scope='session', autouse=True)
 def load_env():
     load_dotenv()
+
 
 @pytest.fixture(scope='function', autouse=True)
 def setup_browser(request):
@@ -41,10 +44,10 @@ def setup_browser(request):
         options=options
     )
 
+    browser.config.driver = driver
     browser.config.base_url = 'https://rabota.by/'
     browser.config.window_width = 1920
     browser.config.window_height = 1080
-    browser.config.driver = driver
 
     yield browser
 

@@ -2,10 +2,11 @@ import os
 from selene import browser, have
 import allure
 
+
 class LoginPage:
     def open(self):
         with allure.step('Open browser'):
-            browser.open('https://rabota.by/')
+            browser.open('')
             return self
 
     def login_user_with_correct_data(self):
@@ -20,7 +21,7 @@ class LoginPage:
         with allure.step('Click on submit button'):
             browser.element('[data-qa=account-login-submit]').click()
 
-    def should_successfull_login(self):
+    def should_successfully_login(self):
         with allure.step('Click on profile button'):
             browser.element('[data-qa=mainmenu_applicantProfile]').click()
         with allure.step('Checking username'):
@@ -38,6 +39,10 @@ class LoginPage:
         with allure.step('Click on submit button'):
             browser.element('[data-qa=account-login-submit]').click()
 
-    def should_unsuccessfull_login(self):
+    def should_unsuccessfully_login(self):
         with allure.step('Checking error message'):
-            browser.element('[data-qa=account-login-error]').should(have.text('Неправильные данные для входа. Пожалуйста, попробуйте снова.'))
+            browser.element('[data-qa=account-login-error]').should(
+                have.text('Неправильные данные для входа. Пожалуйста, попробуйте снова.'))
+
+
+login_page = LoginPage()

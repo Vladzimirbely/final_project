@@ -1,10 +1,11 @@
 from selene import browser, have, command, be
 import allure
 
+
 class SearchPage:
     def open(self):
         with allure.step('Open browser'):
-            browser.open('https://rabota.by/')
+            browser.open('')
             return self
 
     def search_company(self):
@@ -36,7 +37,8 @@ class SearchPage:
             browser.element('[data-qa="bloko-suggest-list"] li:first-child').click()
         with allure.step('Choose specialization'):
             browser.element('[data-qa="resumesearch__profroles-switcher"]').click()
-            browser.element('[data-qa="bloko-tree-selector-item-text bloko-tree-selector-item-text-category-11"]').click()
+            browser.element(
+                '[data-qa="bloko-tree-selector-item-text bloko-tree-selector-item-text-category-11"]').click()
             browser.element('[data-qa="bloko-tree-selector-popup-submit"]').click()
         with allure.step('Enter "3000" in income section'):
             browser.element('[data-qa="advanced-search-salary"]').type('3000')
@@ -58,6 +60,8 @@ class SearchPage:
             browser.element('[data-hh-tab-id="resumeSearch"]').click()
         with allure.step('Click on filter resume section'):
             browser.element('[data-qa="bloko-custom-select-select"]').click()
+
+    def should_have_filter_section(self):
         with allure.step('Checking openning filters section'):
             browser.element('[data-qa="bloko-custom-select-option-list"]').should(be.visible)
 
@@ -90,3 +94,6 @@ class SearchPage:
             browser.element('.supernova-navi-item_area-switcher-button').should(have.text('Брест'))
         with allure.step('Checking name of city in filters dection'):
             browser.element('[data-qa="bloko-tag__text"]').should(have.text('Брест'))
+
+
+search_page = SearchPage()

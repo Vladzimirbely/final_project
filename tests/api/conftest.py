@@ -1,6 +1,7 @@
 import pytest
 from selene import browser
 
+
 @pytest.fixture(scope='function', autouse=True)
 def open_browser(request):
     browser.config.base_url = 'https://rabota.by/'

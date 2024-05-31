@@ -3,9 +3,10 @@ import requests
 from allure import attach
 from allure_commons.types import AttachmentType
 from jsonschema import validate
-from final_project.utils.load_json import load_json
+from rabotaby_project_tests.utils.load_json import load_json
 
 page = 'https://rabota.by/'
+
 
 @allure.epic('Search')
 @allure.story('Search vacancies')
@@ -31,6 +32,7 @@ def test_search_vacancy():
     with allure.step('Checking validation'):
         validate(response.json(), load_json('search_vacancies.json'))
 
+
 @allure.epic('Search')
 @allure.story('Add vacancy to favorite')
 @allure.feature('Search')
@@ -53,6 +55,7 @@ def test_add_vacancy_to_favorite_without_registered():
         response = requests.get(f'{page}{url}/{data}', headers=headers, data=payload)
     with allure.step('Checking status code'):
         assert response.status_code == 404
+
 
 @allure.epic('Otp')
 @allure.story('Get Otp')
