@@ -70,15 +70,15 @@
 </pre>
 <p><b>For mobile tests on emulator:</b></p>
 <pre>
-    pytest tests/api --context=local_emulator
+    pytest tests/mobile --context=local_emulator
 </pre>
 <p><b>For mobile tests on real device:</b></p>
 <pre>
-    pytest tests/api --context=real_local
+    pytest tests/mobile --context=real_local
 </pre>
 <p><b>For mobile tests on bstack:</b></p>
 <pre>
-    pytest tests/api --context=bstack
+    pytest tests/mobile --context=bstack
 </pre>
 
 
@@ -94,6 +94,9 @@
 <img src="resources/allure-result.png" alt="allure-result">
 <img src="resources/testOps.png" alt="allure-testOps">
 <img src="resources/testOps-tests.png" alt="allure-testOps-tests">
+
+<p>Project in Jira</p>
+<img src="resources/jira.png" alt="jira">
 
 
 ---

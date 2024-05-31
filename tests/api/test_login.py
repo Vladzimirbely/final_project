@@ -17,8 +17,8 @@ from rabotaby_project_tests.utils.api_helper import api_request
 def test_login_with_correct_data(base_api_url):
     load_dotenv()
 
-    login = os.getenv('user_login')
-    password = os.getenv('user_password')
+    login = os.getenv('user_login_api')
+    password = os.getenv('user_password_api')
     endpoint = '/account/login?backurl=%2F'
 
     payload = {'username': login, 'password': password}
