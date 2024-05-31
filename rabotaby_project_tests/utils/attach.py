@@ -1,6 +1,9 @@
+import json
+import logging
 import allure
 from allure_commons.types import AttachmentType
 import requests
+from requests import Response
 from selene import browser
 
 
@@ -61,3 +64,33 @@ def screenshot():
         name='screenshot',
         attachment_type=allure.attachment_type.PNG
     )
+
+def response_logging(response: Response):
+    logging.info("Request: " + response.request.url)
+    if response.request.body:
+        logging.info("INFO Request body: " + response.request.body.decode('utf-8'))
+    logging.info("Request headers: " + str(response.request.headers))
+    logging.info("Response code " + str(response.status_code))
+    logging.info("Response: " + response.text)
+
+
+def response_attaching(response: Response):
+    allure.attach(
+        body=response.request.url,
+        name="Request url",
+        attachment_type=AttachmentType.TEXT,
+    )
+
+    if response.request.body:
+        allure.attach(
+            body=json.dumps(response.request.body.decode('utf-8'), indent=4, ensure_ascii=True),
+            name="Request body",
+            attachment_type=AttachmentType.JSON,
+            extension="json",
+        )
+        allure.attach(
+            body=json.dumps(response.json(), indent=4, ensure_ascii=True),
+            name="Response",
+            attachment_type=AttachmentType.JSON,
+            extension="json",
+        )

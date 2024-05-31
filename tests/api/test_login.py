@@ -5,9 +5,7 @@ from allure_commons.types import AttachmentType
 from dotenv import load_dotenv
 from jsonschema import validate
 from rabotaby_project_tests.utils.load_json import load_json
-import requests
-
-page = 'https://rabota.by/'
+from rabotaby_project_tests.utils.api_helper import api_request
 
 
 @allure.epic('Login')
@@ -16,29 +14,25 @@ page = 'https://rabota.by/'
 @allure.tag('API')
 @allure.label('owner')
 @allure.severity('high')
-def test_login_with_correct_data():
+def test_login_with_correct_data(base_api_url):
     load_dotenv()
 
     login = os.getenv('user_login')
     password = os.getenv('user_password')
-    url = 'account'
-    data = 'login?backurl=%2F'
+    endpoint = '/account/login?backurl=%2F'
 
     payload = {'username': login, 'password': password}
 
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                      'Chrome/124.0.0.0 Safari/537.36'}
-
     with allure.step('Send request with data'):
-        response = requests.post(f'{page}{url}/{data}', headers=headers, data=payload)
+        response = api_request(base_api_url, endpoint, 'POST', params=payload)
+
     cookies = response.cookies.get('_hi')
     with allure.step('Attach files'):
         attach(body=cookies, name='cookies', attachment_type=AttachmentType.TEXT)
     with allure.step('Checking status code'):
         assert response.status_code == 200
     with allure.step('Checking response'):
-        assert response.json()['recaptcha']['isBot'] == False
+        assert response.json()['recaptcha']['isBot'] is False
         assert response.json()['hhcaptcha']['captchaError'] is None
     with allure.step('Checking validation'):
         validate(response.json(), load_json('correct_login.json'))
@@ -50,18 +44,15 @@ def test_login_with_correct_data():
 @allure.tag('API')
 @allure.label('owner')
 @allure.severity('high')
-def test_login_with_incorrect_data():
-    url = 'account'
-    data = 'login?backurl=%2F'
+def test_login_with_incorrect_data(base_api_url):
+    endpoint = '/account/login?backurl=%2F'
 
     payload = {'username': 'login',
                'password': 'password'}
 
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                      'Chrome/124.0.0.0 Safari/537.36'}
     with allure.step('Send request with incorrect data'):
-        response = requests.post(f'{page}{url}/{data}', headers=headers, data=payload)
+        response = api_request(base_api_url, endpoint, 'POST', params=payload)
+
     json = response.text
     with allure.step('Attach files'):
         attach(body=json, name='json', attachment_type=AttachmentType.TEXT)
