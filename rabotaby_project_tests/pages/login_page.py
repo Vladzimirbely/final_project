@@ -15,9 +15,9 @@ class LoginPage:
         with allure.step('Click on login with password button'):
             browser.element('[data-qa=expand-login-by-password]').click()
         with allure.step('Enter login'):
-            browser.element('[data-qa=login-input-username]').type(os.getenv('user_login'))
+            browser.element('[data-qa=login-input-username]').type(os.getenv('user_login_web'))
         with allure.step('Enter password'):
-            browser.element('[data-qa=login-input-password]').type(os.getenv('user_password'))
+            browser.element('[data-qa=login-input-password]').type(os.getenv('user_password_web'))
         with allure.step('Click on submit button'):
             browser.element('[data-qa=account-login-submit]').click()
 
