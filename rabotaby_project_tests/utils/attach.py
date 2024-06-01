@@ -79,18 +79,33 @@ def response_attaching(response: Response):
         body=response.request.url,
         name="Request url",
         attachment_type=AttachmentType.TEXT,
+        extension='.txt'
+    )
+
+    allure.attach(
+        body=str(response.status_code),
+        name='response status code',
+        attachment_type=AttachmentType.TEXT,
+        extension='.txt'
+    )
+
+    allure.attach(
+        body=response.text,
+        name='response text',
+        attachment_type=AttachmentType.TEXT,
+        extension='.txt'
     )
 
     if response.request.body:
         allure.attach(
-            body=json.dumps(response.request.body.decode('utf-8'), indent=4, ensure_ascii=True),
-            name="Request body",
+            body=json.dumps(str(response.request.body)),
+            name="request body",
             attachment_type=AttachmentType.JSON,
-            extension="json",
+            extension=".json",
         )
         allure.attach(
             body=json.dumps(response.json(), indent=4, ensure_ascii=True),
-            name="Response",
+            name="response",
             attachment_type=AttachmentType.JSON,
-            extension="json",
+            extension=".json",
         )

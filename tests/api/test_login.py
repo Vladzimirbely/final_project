@@ -17,9 +17,9 @@ def test_login_with_correct_data(base_api_url):
 
     login = os.getenv('user_login_api')
     password = os.getenv('user_password_api')
-    endpoint = '/account/login?backurl=%2F'
+    endpoint = '/account/login'
 
-    params = {'username': login, 'password': password}
+    params = {'username': login, 'password': password, 'q': 'backurl=%2F'}
 
     with allure.step('Send request with data'):
         response = api_request(base_api_url, endpoint, 'POST', params=params)
@@ -40,10 +40,9 @@ def test_login_with_correct_data(base_api_url):
 @allure.label('owner')
 @allure.severity('high')
 def test_login_with_incorrect_data(base_api_url):
-    endpoint = '/account/login?backurl=%2F'
+    endpoint = '/account/login'
 
-    params = {'username': 'login',
-               'password': 'password'}
+    params = {'username': 'login', 'password': 'password', 'q': 'backurl=%2F'}
 
     with allure.step('Send request with incorrect data'):
         response = api_request(base_api_url, endpoint, 'POST', params=params)

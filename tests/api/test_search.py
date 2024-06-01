@@ -11,10 +11,11 @@ from rabotaby_project_tests.utils.api_helper import api_request
 @allure.label('owner')
 @allure.severity('normal')
 def test_search_vacancy(base_api_url):
-    endpoint = '/vacancysuggest?q=PYTHON'
+    endpoint = '/vacancysuggest'
+    data = {'q': 'PYTHON'}
 
     with allure.step('Send request'):
-        response = api_request(base_api_url, endpoint, 'GET')
+        response = api_request(base_api_url, endpoint, 'GET', params=data)
 
     with allure.step('Checking status code'):
         assert response.status_code == 200
